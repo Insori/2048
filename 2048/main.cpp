@@ -3,16 +3,33 @@
 #include <time.h>
 
 using namespace sf;
+using namespace std;
 
-enum class Direction
+const int n = 4, m = 4;
+int board[n][m];
+
+enum Direction
 {
 	Left, Right, Up, Down
 };
 
-void shift(Direction d)
-{
-
+//2 또는 4 블럭
+int new_block() {
+	int n = rand() % 2;
+	if (n == 0) return 2;
+	else return 4;
 }
+
+void start() {
+	Vector2i v;
+	while (1) {
+		v.x = rand() % 4;
+		v.y = rand() % 4;
+		if (board[v.x][v.y] == 0) break;
+	}
+	board[v.x][v.y] = new_block();
+}
+
 
 int main()
 {
@@ -55,6 +72,7 @@ int main()
 		//draw
 		app.clear();
 		app.draw(s_back);
+		app.draw(s2);
 
 		app.display();
 	}
